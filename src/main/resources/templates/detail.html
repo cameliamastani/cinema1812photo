@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${film.titre}">Détail</title>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+<h1 th:text="${film.titre}">Titre</h1>
+<h2>Note: <span th:text="${film.getNotation()}">Note</span></h2>
+<img width="15%" height="15%" th:src="'/affiches/'+${film.getAffiche()}">
+<h3 ><span th:text="${film.resume}"></span></h3>
+<h4 th:text="'Réalisateur : ' + ${film.getRealisateur().getNom()} + ', '
+                                        + ${film.getRealisateur().getPrenom()}">
+</h4>
+
+
+
+<ul>
+    <li th:each="role : ${film.getRoles()}">
+
+        <a th:href="@{'~/acteur/' + ${role.getPerssone().getIdp()}}" th:text="${role.getPerssone().getNom()}
+            +' ' + ${role.getPerssone().getPrenom()} + ' joue ' + ${role.getAlias()}">
+            film
+        </a>
+    </li>
+</ul>
+<!--
+<ul>
+    <li th:each="role : ${film.getRoles()}">
+    <a th:href="@{'~/acteur/' + ${role.getPerssone().getNom()}}" th:text="${role.getPerssone().getNom()}
+            +' ' + ${role.getPerssone().getPrenom()} + ' joue ' + ${role.getAlias()}">
+            film
+        </a>
+    </li>
+</ul>
+
+
+
+<!--
+<ul>
+    <li th:each="act : ${acteur}">
+        <a th:text="${act.getPrenom()} " th:href="@{/act/{id}(id=${act.getIdp()})}"></a>
+    </li>
+</ul>
+
+<!--<img th:src="@{/{id} (id=${film.afficheNom})}"/>-->
+
+<img th:src="@{${url}}"/>
+
+
+<div th:replace="fragments/footer :: footer"/>
+</body>
+</html>

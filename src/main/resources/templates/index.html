@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+<h1 th:text="'Bonjour ' + ${nom}">Hello CDA</h1>
+
+<ul>
+    <li th:each="film : ${films}">
+        <a th:text="${film.titre}" th:href="@{/film/{id}(id=${film.id})}" >Le grand film</a>
+    </li>
+</ul>
+<div th:replace="fragments/footer :: footer"/>
+</body>
+</html>
